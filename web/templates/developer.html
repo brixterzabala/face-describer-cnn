@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="{{ url_for('static',filename='background_styles.css')}}">
+      <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="{{ url_for('static',filename='script.js')}}"defer></script>
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Home</title>
+    </head>
+
+
+    <body>
+      <nav class="navbar">
+        <div class="brand-title">IFIND</div>
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="{{ url_for('index')}}">Project</a></li>
+            <li><a href="/developer">Developer</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div> 
+       
+<div class="wrapper">
+  <br><h1>Our Team</h1>
+  <div class="our_team">
+      <div class="team_member">
+        <div class="member_img">
+           <img src="ems.jpg" alt="">
+          <div class="social_media">
+             <div class="facebook item"><i class="fab fa-facebook-f"></i></div>
+             <div class="twitter item"><i class="fab fa-twitter"></i></div>
+             <div class="instagram item"><i class="fab fa-instagram"></i></div>
+           </div>
+        </div>
+        <h3>BRIXTER ZABALA</h3>
+        <span>Researcher</span>
+        <p>He is a Student form Pamanatasan ng Lungsod ng Muntinlupa part of BSCS 4A, He's Currently 22 Years old (2022), He was born in November 23 1999.  </p>
+      </div>
+      <div class="team_member">
+         <div class="member_img">
+           <img src="https://www.facebook.com/photo/?fbid=2998241657111924&set=a.1378952895707483" alt="">
+           <div class="social_media">
+             <div class="facebook item"><i class="fab fa-facebook-f"></i></div>
+             <div class="twitter item"><i class="fab fa-twitter"></i></div>
+             <div class="instagram item"><i class="fab fa-instagram"></i></div>
+           </div>
+        </div>
+        <h3>ACE MARK AGUILAR</h3>
+        <span>Researcher</span>
+        <p>He is a Student form Pamanatasan ng Lungsod ng Muntinlupa part of BSCS 4A, He's Currently 22 Years old (2022), He was born in November 23 1999. .</p>
+    </div>
+      <div class="team_member">
+         <div class="member_img">
+           <img src="member_3.png" alt="">
+           <div class="social_media">
+             <div class="facebook item"><i class="fab fa-facebook-f"></i></div>
+             <div class="twitter item"><i class="fab fa-twitter"></i></div>
+             <div class="instagram item"><i class="fab fa-instagram"></i></div>
+           </div>
+        </div>
+        <h3>AARON ACE ZAGALA</h3>
+        <span>RESEARCHER</span>
+        <p>He is a Student form Pamanatasan ng Lungsod ng Muntinlupa part of BSCS 4A, He's Currently 22 Years old (2022), He was born in November 23 1999. </p>
+    </div>
+      
+  </div>
+</div>	
+
+<section class="subscribe-area">
+    <div class="container">
+        <div class="subscribe">
+            <h4>get latest updates</h4>
+            <p>We can provide the expectation you want</p>
+            <form action="/">
+                <input type="text" placeholder="Your Email">
+                <input type="submit" value="Sumbit">
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="footer">
+            <div class="single-footer">
+                <h4>about us</h4>
+                <p> Student form Pamanatasan ng Lungsod ng Muntinlupa part of BSCS 4A.</p>
+                <div class="footer-social">
+                    <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="single-footer">
+                <h4>quick links</h4>
+                <ul>
+                    <li><a href=""><i class="/home"></i> home</a></li>
+                    <li><a href=""><i class="/developer"></i> about</a></li>
+                    <li><a href=""><i class="{{ url_for('index')}}"></i>  Project</a></li>
+               
+                </ul>
+            </div>
+            <div class="single-footer">
+                <h4>open Consultation</h4>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> monday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> tuesday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> wednesday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> friday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> saturday: 10:00 - 14:00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> sunday : closed Day</li>
+                </ul>
+            </div>
+            <div class="single-footer">
+                <h4>contact us</h4>
+                <ul>
+                    <li><a href=""><i class="fa-solid fa-location-dot"></i> Pamantasan Lungsod ng Muntinlupa</a></li>
+                    <li><a href="tel:+09380428072"><i class="fa-solid fa-phone"></i> 09380428072</a></li>
+                    <li><a href="milto:info@domainname.com"><i class="fa-solid fa-envelope"></i> ZAZ.CS@gmail.com</a></li>
+                    <li><a href=""><i class="fa-solid fa-globe"></i> www.ZAZ.CS.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<section class="footer-bottom-area">
+    <div class="container">
+        <div class="footer-bottom">
+            <div class="copy">
+                <p>&copy; 2022 all rights reserved.</p>
+            </div>
+            <div class="footer-menu">
+                <a href="">privacy policy</a>
+                <a href="">terms & conditions</a>
+                <a href="">disclaimer</a>
+            </div>
+        </div>
+    </div>
+</section>
+    </body>
+</html>
+

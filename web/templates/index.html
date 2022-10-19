@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="{{ url_for('static',filename='background_styles.css')}}">
+      <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="{{ url_for('static',filename='script.js')}}"defer></script>
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Home</title>
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="brand-title">IFIND</div>
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="{{ url_for('index')}}">Project</a></li>
+            <li><a href="/developer">Developer</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="wrapper"> 
+        <main>
+        
+            <input type="file" id="fileInput" accept="image/jpg" onchange="handleChange(event)" hidden />
+    
+            <img src="" alt="face_image" id="face_img" hidden>
+    
+            <div id="img_placeholder" title="select image">
+                Tap to choose an image
+            </div>
+    
+            <button onclick="classify()"> Classify </button>
+            <section id="result"></section>
+    
+            <button onClick="window.location.reload();">Reset</button>
+    
+    <div> </div>
+        </main>
+    
+        <script>
+            const acceptedFileType = 'image/jpeg';
+            const reader = new FileReader();
+            const displayImage = document.getElementById('face_img');
+            const fileInput = document.getElementById('fileInput');
+            const imgPlaceholder = document.getElementById('img_placeholder');
+            let base64Image = null;
+            let imageHasBeenChanged = false;
+    
+            imgPlaceholder.onclick = () => fileInput.click();
+    
+            function showError() {
+                alert('Invalid file type');
+            }
+    
+            function handleChange(e) {
+                // return if no file selected
+                if (e.target.files.length === 0) return;
+    
+                const file = e.target.files[0];
+                if (file.type !== acceptedFileType) {
+                    showError();
+                    return;
+                }
+    
+                reader.readAsDataURL(file);
+                reader.onloadend = () => {
+                    base64Image = reader.result;
+                    displayImage.src = base64Image;
+                    displayImage.style.display = 'block';
+                    imgPlaceholder.innerText = 'Select another image';
+                    imgPlaceholder.style.padding = '1rem 0';
+                    imageHasBeenChanged = true;
+                };
+            }
+    
+            async function classify() {
+                if (base64Image === null && imageHasBeenChanged === false) {
+                    alert('Please select an image first.');
+                    return;
+                }
+                // prevent fetching the s-ame image twice
+                if (base64Image !== null && imageHasBeenChanged === false) {
+                    alert('The selected image is already classified. Please select different one.');
+                    return;
+                }
+    
+                const resultContainer = document.getElementById('result');
+                resultContainer.innerHTML = 'Processing...';
+    
+                const res = await fetch('/', {
+                    method: 'POST',
+                    body: JSON.stringify({ base64Image }),
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                const data = await res.json();
+    
+                imageHasBeenChanged = false;
+    
+                console.log(data);
+    
+                resultContainer.innerHTML = '';
+                resultContainer.innerHTML = `
+                    <h5> ${data.eyes.label} Eyes </h4>
+                    <h5> ${data.eyes.accuracy_score} </h4> <br/>
+                    <h5> ${data.nose.label} Nose </h4>
+                    <h5> ${data.nose.accuracy_score} </h4> <br/>
+                    <h5> ${data.skin.label} Skin </h4>
+                    <h5> ${data.skin.accuracy_score} </h4> <br/>
+                `
+            }
+        </script>
+
+    </div>
+</div>
+<section class="subscribe-area">
+    <div class="container">
+        <div class="subscribe">
+            <h4>get latest updates</h4>
+            <p>We can provide the expectation you want</p>
+            <form action="/">
+                <input type="text" placeholder="Your Email">
+                <input type="submit" value="Sumbit">
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="footer">
+            <div class="single-footer">
+                <h4>about us</h4>
+                <p> Student form Pamanatasan ng Lungsod ng Muntinlupa part of BSCS 4A.</p>
+                <div class="footer-social">
+                    <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="single-footer">
+                <h4>quick links</h4>
+                <ul>
+                    <li><a href=""><i class="/home"></i> home</a></li>
+                    <li><a href=""><i class="/developer"></i> about</a></li>
+                    <li><a href=""><i class="{{ url_for('index')}}"></i>  Project</a></li>
+               
+                </ul>
+            </div>
+            <div class="single-footer">
+                <h4>open Consultation</h4>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> monday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> tuesday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> wednesday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> friday: 10.00 - 18.00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> saturday: 10:00 - 14:00</li>
+                    <li><i class="fa-solid fa-caret-right"></i> sunday : closed Day</li>
+                </ul>
+            </div>
+            <div class="single-footer">
+                <h4>contact us</h4>
+                <ul>
+                    <li><a href=""><i class="fa-solid fa-location-dot"></i> Pamantasan Lungsod ng Muntinlupa</a></li>
+                    <li><a href="tel:+09380428072"><i class="fa-solid fa-phone"></i> 09380428072</a></li>
+                    <li><a href="milto:info@domainname.com"><i class="fa-solid fa-envelope"></i> ZAZ.CS@gmail.com</a></li>
+                    <li><a href=""><i class="fa-solid fa-globe"></i> www.ZAZ.CS.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<section class="footer-bottom-area">
+    <div class="container">
+        <div class="footer-bottom">
+            <div class="copy">
+                <p>&copy; 2022 all rights reserved.</p>
+            </div>
+            <div class="footer-menu">
+                <a href="">privacy policy</a>
+                <a href="">terms & conditions</a>
+                <a href="">disclaimer</a>
+            </div>
+        </div>
+    </div>
+</section>
+    </body>
+</html>
+
+<body>
+   
